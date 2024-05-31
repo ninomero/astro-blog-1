@@ -1,0 +1,253 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Header from '~/components/widgets/Header.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Personal Homepage Demo',
+};
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="announcement"></Fragment>
+  <Fragment slot="header">
+    <Header
+      links={[
+        { text: 'Top', href: '#' },
+        { text: '自己紹介', href: '#about' },
+        { text: '職歴・学歴', href: '#resume' },
+        { text: '資格・学習', href: '#qualification' },
+        { text: '作品', href: '#porfolio' },
+        { text: 'Github', href: 'https://github.com/ninomero' },
+      ]}
+      isSticky
+      showToggleTheme
+    />
+  </Fragment>
+
+  <!-- 自己紹介 **************** -->
+
+  <Content
+    id="about"
+    columns={3}
+    image={{
+      src: 'https://images.microcms-assets.io/assets/a509ab0f6ba34a34ab69228b0f20af18/54e3cdfba1d04c3298212ea6e39dafbf/rectCode1.png?w=500',
+      alt: 'Colorful Image',
+      loading: 'eager',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">自己紹介</h2>
+      <p>初めまして。二ノ丸主馬です。</p>
+      <p>私はソフトウェアエンジニアとしてにてカーナビゲーションシステムの開発の案件に約2年以上携わっております。</p>
+      <p>プライベートでは様々な勉強に取り組み、最近ではフロントエンド言語を中心にReactを使用したECサイト開発やNext.jsを使用したブログ開発などを行っております。</p>
+    </Fragment>
+  </Content>
+
+  <!-- 職歴 ****************** -->
+
+  <Steps
+    id="resume"
+    title="職歴"
+    items={[
+      {
+        title: '株式会社 エスユーエス<br /> <span class="text-sm font-normal">2022 - Present</span>',
+        description: `SES事業に伴い、別会社に客先常駐の形で業務に携わっている`,
+        icon: 'tabler:briefcase',
+      },
+    ]}
+    classes={{ container: 'max-w-3xl' }}
+  />
+
+  <!-- 学歴 ****************** -->
+
+  <Steps
+    id="resume"
+    title="学歴"
+    items={[
+      {
+        title: `近畿大学 理工学部 情報学科<span class="text-sm font-normal">(※現在は理工情報学部である)</span> <br /> <span class="text-sm font-normal">2018 - 2022</span>`,
+        description: 'Javaを中心とした情報系の講義を履修',
+        icon: 'tabler:school',
+      },
+    ]}
+    classes={{ container: 'max-w-3xl' }}
+  />
+
+  <!-- 仕事で培った技術 ************** -->
+
+  <Features3
+    id="job-skil"
+    title="仕事で培った技術"
+    columns={3}
+    defaultIcon="tabler:point-filled"
+    items={[
+      {
+        title: 'PL/SQL',
+        description: '約2年ほど使用<br />オブジェクト指向の概念を扱ったSQL操作を習得している',
+      },
+      {
+        title: 'Markdown, MkDocs',
+        description: '約2年ほど使用<br />設計書作成時に使用',
+      },
+      {
+        title: 'Excel',
+        description: '約2年ほど使用<br />要件定義や試験書の作成に使用',
+      },
+    ]}
+  />
+
+  <!-- 資格記載欄 ************** -->
+
+  <Features3
+    id="qualification"
+    title="取得している資格"
+    columns={3}
+    defaultIcon="tabler:point-filled"
+    items={[
+      {
+        title: 'AWS Certified Solutions Architect - Associate',
+        description: '2023年05月に取得',
+      },
+      {
+        title: 'Oracle Database SQL',
+        description: '2022年08月に取得',
+      },
+      {
+        title: 'Bronze DBA Oracle Database Fundamentals',
+        description: '2022年07月に取得',
+      },
+    ]}
+  />
+
+  <!-- 学習しているスキル記載欄 ************** -->
+
+  <Features3
+    id="study"
+    title="自己学習"
+    columns={3}
+    defaultIcon="tabler:point-filled"
+    items={[
+      {
+        title: 'React',
+        description: '約3カ月ほど学習',
+      },
+      {
+        title: 'HTML × CSS',
+        description: '約6ヶ月ほど学習<br />Web上に公開されているECサイトなどを参考にして模写のような形で学習',
+      },
+      {
+        title: 'Next.js',
+        description: '約1ヶ月ほど学習<br />SSGサイトの構築により高速にサイトを開ける技術を学習',
+      },
+      {
+        title: 'TypeScript',
+        description: 'ドキュメントの学習を行っている程度',
+      },
+      {
+        title: 'Java',
+        description: '大学時代に4年間程学習',
+      },
+    ]}
+  />
+
+  <!-- 作成したプロジェクト **************** -->
+
+  <Content
+    id="porfolio"
+    title="作成したWebアプリ"
+    subtitle="フロントエンド言語学習に伴って作成したWebアプリを紹介"
+    isReversed
+    items={[
+      {
+        title: '作成意図',
+        description: 'フロントエンド言語を学習するために日頃から使用しているようなECサイトを作成してみたいと思ったため',
+      },
+      {
+        title: 'サイト説明',
+        description: 'React × Firebase を使用したSPA開発',
+      },
+      {
+        title: '主な機能',
+        description:
+          '・アカウント作成<br />・ログイン<br />・ログアウト<br />・カート追加<br />・商品編集<br />・お気に入り追加<br />・商品購入<br />・商品購入履歴確認',
+      },
+      {
+        title: '今後アップデート予定',
+        description:
+          '・Stripeを使用した決済機能<br />・Typescript を使用した型定義<br />・商品編集機能の限定アクセス<br />',
+      },
+    ]}
+    image={{
+      src: 'https://images.microcms-assets.io/assets/a509ab0f6ba34a34ab69228b0f20af18/2f6246b13a864b6b92b78cc8ab3c34a2/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202024-05-16%20234720.png?w=1000',
+      alt: 'EC Image',
+    }}
+    callToAction={{
+      target: '_blank',
+      text: 'サイトを確認する',
+      icon: 'tabler:chevron-right',
+      href: 'https://ec-app-dev-b2c1e.web.app/',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        <span class="text-2xl">Reactを使用したECサイト</span>
+      </h3>
+    </Fragment>
+  </Content>
+
+  <Content
+    id="porfolio-2"
+    items={[
+      {
+        title: '作成意図',
+        description:
+          'プライベートで学習した知見を備忘録として残したかったため',
+      },
+      {
+        title: 'サイト説明',
+        description: 'Next.js × microCMSを使用したブログサイト',
+      },
+      {
+        title: '主な機能',
+        description:
+          '・microCMSで作成したブログ記事の表示<br />・NextUIを使用したページネーション<br />・カテゴリー分類機能<br />',
+      },
+    ]}
+    image={{
+      src: 'https://images.microcms-assets.io/assets/a509ab0f6ba34a34ab69228b0f20af18/f182d5c257f644c2b3fda54ed2c9cfa8/blog-sitepng.png?w=1000',
+      alt: 'Blog-1 Image',
+    }}
+    callToAction={{
+      target: '_blank',
+      text: 'サイトを確認する',
+      icon: 'tabler:chevron-right',
+      href: 'https://blog-gamma-three-89.vercel.app/',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        <span class="text-2xl">Next.js × microCMSを使用したブログサイト</span>
+      </h3>
+    </Fragment>
+  </Content>
+
+  <!-- Webタイトル ******************* -->
+  <div class="'relative border-t border-gray-200 dark:border-slate-800 not-prose'"></div>
+  <Hero id="hero" title="Astro Web Portfolio" tagline="Astro Web Portfolio">
+    <Fragment slot="subtitle">
+      このサイトはastroを使用して作成しております
+      <br />
+      <a href="https://astro.build/themes/details/astrowind/">https://astro.build/themes/details/astrowind/</a>
+    </Fragment>
+  </Hero>
+  <div class="'relative border-t border-gray-200 dark:border-slate-800 not-prose'"></div>
+</Layout>
